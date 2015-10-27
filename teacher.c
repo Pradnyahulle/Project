@@ -2,30 +2,30 @@
 #include <stdlib.h>
 #include <string.h>  
 
-int student()
+int teacher()
 {
     FILE *fp, *ft; /* file pointers */
 	int ch;
 	char an;
-    /* structure that represent a studentloyee */
-    struct student
+    
+    struct Teacher
     {
-	char name[40]; 		
+	char name[40]; 	
 	int age; 		
-	float percent; 		
+	float bs; 		
     };
 
-    struct student e; 		
-    char studentname[40]; 		
+    struct Teacher e; 		
+    char Teachername[40]; 		
     long int recsize; 		
    /* open the file in binary read and write mode
-    * if the file student.DAT already exists then it open that file in read write mode
+    * if the file Teacher.DAT already exists then it open that file in read write mode
     * if the file doesn't exit it simply create a new copy
     */
-    fp = fopen("student.DAT","rb+");
+    fp = fopen("Teacher.DAT","rb+");
     if(fp == NULL)
     {
-        fp = fopen("student.DAT","wb+");
+        fp = fopen("Teacher.DAT","wb+");
 	if(fp == NULL)
 	{
             printf("Connot open file");
@@ -63,8 +63,9 @@ int student()
                     scanf("%s",e.name);
                     printf("\nEnter age: ");
                     scanf("%d", &e.age);
-                    printf("\nEnter Percentage of student: ");
-                    scanf("%f", &e.percent);
+                    printf("\nEnter basic salary: ");
+                    scanf("%f", &e.bs);
+
                     fwrite(&e,recsize,1,fp); 
                 }
                 break;
@@ -72,7 +73,7 @@ int student()
     			rewind(fp); /* this moves file cursor to start of the file */
 			while(fread(&e,recsize,1,fp)==1)
 			{ /* read the file and fetch the record one record per fetch */
-		            printf("\n\t%s \t%d \t%.2f",e.name,e.age,e.percent); 
+		            printf("\n\t%s \t%d \t%.2f",e.name,e.age,e.bs); 
 			    printf("\n\t*******************************"); 	
 			
 		        }
@@ -82,17 +83,17 @@ int student()
 		an='y';
 		while(an == 'y')
 		{
-                    printf("Enter the student name to modify: ");
-                    scanf("%s", studentname);
+                    printf("Enter the Teacherloyee name to modify: ");
+                    scanf("%s", Teachername);
                     rewind(fp);
 		    while(fread(&e,recsize,1,fp)==1)
 		    { 
 			/* fetch all record from file */
-			if(strcmp(e.name,studentname) == 0)
+			if(strcmp(e.name,Teachername) == 0)
 			{ 
 			   /* if entered name matches with that in file */
-                            printf("\nEnter new name,age and percent: ");
-                            scanf("%s%d%f",e.name,&e.age,&e.percent);
+                            printf("\nEnter new name,age and bs: ");
+                            scanf("%s%d%f",e.name,&e.age,&e.bs);
                             fseek(fp,-recsize,SEEK_CUR); /* move the cursor 1 step back from current position */
                             fwrite(&e,recsize,1,fp); /* override the record */
                             break;
@@ -106,27 +107,27 @@ int student()
             case 4:
                 an= 'y';
                 while(an == 'y'){
-                    printf("\nEnter name of student to delete: ");
-                    scanf("%s",studentname);
-                    ft = fopen("Tstudent.dat","wb");  /* create a intermediate file for tstudentorary storage */
+                    printf("\nEnter name of Teacher to delete: ");
+                    scanf("%s",Teachername);
+                    ft = fopen("TTeacher.dat","wb");  /* create a intermediate file for tTeacherorary storage */
                     rewind(fp); /* move record to starting of file */
                     while(fread(&e,recsize,1,fp) == 1){ /* read all records from file */
-                        if(strcmp(e.name,studentname) != 0){ /* if the entered record match */
-                            fwrite(&e,recsize,1,ft); /* move all records except the one that is to be deleted to tstudent file */
+                        if(strcmp(e.name,Teachername) != 0){ /* if the entered record match */
+                            fwrite(&e,recsize,1,ft); /* move all records except the one that is to be deleted to tTeacher file */
                         }
                     }
                     fclose(fp);
                     fclose(ft);
-                    remove("student.DAT"); /* remove the orginal file */
-                    rename("Tstudent.dat","student.DAT"); /* rename the tstudent file to original file name */
-                    fp = fopen("student.DAT", "rb+");
+                    remove("Teacher.DAT"); /* remove the orginal file */
+                    rename("TTeacher.dat","Teacher.DAT"); /* rename the tTeacher file to original file name */
+                    fp = fopen("Teacher.DAT", "rb+");
                     fflush(stdin);
 		    scanf("%c",&an);
                 }
                 break;
             case 5:
                 fclose(fp);  
-                //exit(0);
+               // exit(0);
 		choise(); 
         }
 	printf("\n-----------------------------------------------\n");

@@ -45,7 +45,7 @@ void writescore(float score, char plnm[20])
 	    fclose(f);
 	  }
  }
-int exam() {
+void exam() {
 	     int countq,countr;
 	     int r,i;
 	     int pa;
@@ -64,21 +64,22 @@ int exam() {
 	     puts("\n\t\t WELCOME TO I.Q. TEST PROGRAM\n\n") ;
 	     puts("\n\t\t-------------------------------");
 	     puts("\n\t\t Enter 1 to start game       ");
-	     puts("\n\t\t Enter 2 to view high score  ");
-	     puts("\n\t\t Enter 3 for help            ");
-	     puts("\n\t\t Enter 4 to quit             ");
+	    // puts("\n\t\t Enter 2 to view high score  ");
+	     puts("\n\t\t Enter 2 for help            ");
+	     puts("\n\t\t Enter 3 to quit             ");
 	     printf("\n\t\t-------------------------------\n\n\t\t  ");
 	     
 	     scanf("%d",&choice);
 	    // choice=toupper(choice);
-	     if (choice==2)
+	     if (choice==4)
 		{
 			displayscore();
 			goto mainhome;
 		}
-	     else if (choice==4)
-	 		exit(1);
 	     else if (choice==3)
+	 		//exit(1);
+			choise();
+	     else if (choice==2)
              {
 			 help();
 	 		goto mainhome;
@@ -459,15 +460,15 @@ int exam() {
 		printf("\n\nSATISFACTORY RESULT, BUT THIS MUCH IS MUCH SUFFICIENT.");
 	 else 
 		printf("\n\nYOU ARE VERY POOR IN G.K.,WORK HARD");
-	 puts("\n\nNEXT PLAY?(1/2)");
+	 puts("\n\nNEXT PLAY?(1 (yes) / 2 (NO) )");
 	 int d;
 	 scanf("%d", &d);
 	 if (d == 1) {
 	  	goto home;
 	 }
-	  else
+	  if(d==2)
 	  {
-	  	writescore(score,playername);
+	  	//writescore(score,playername);
 	  	goto mainhome;
 	  }
 	/* else 
@@ -476,5 +477,5 @@ int exam() {
 	 	goto mainhome;
 	 }*/
 	
-	 return 0;
+	 
 }
