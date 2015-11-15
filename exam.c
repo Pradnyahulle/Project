@@ -1,3 +1,20 @@
+/*****************************************************************************
+ * Copyright (C) Pradnya D.Hulle hullepd14.comp@coep.ac.in
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+ *****************************************************************************/
 #include<stdio.h>
 #include<ctype.h>
 #include<stdlib.h>
@@ -9,7 +26,6 @@ void displayscore()
 	 char name[20];
 	 float s;
 	 FILE *f;
-	 
 	 f=fopen("score.txt","r");
 	 fscanf(f,"%s%f",&name,&s);
 	 printf("\n\n\t\t ");
@@ -34,7 +50,6 @@ void writescore(float score, char plnm[20])
 	 float sc;
 	 char nm[20];
 	 FILE *f;
-	
 	 f=fopen("score.txt","r");
 	 fscanf(f,"%s%f",&nm,&sc);
 	 if (score>=sc)
@@ -61,7 +76,7 @@ void exam() {
 	     mainhome:
 	    
 	do {
-	     puts("\n\t\t WELCOME TO I.Q. TEST PROGRAM\n\n") ;
+	     puts("\n\t\t WELCOME TO Gk TEST PROGRAM\n\n") ;
 	     puts("\n\t\t-------------------------------");
 	     puts("\n\t\t Enter 1 to start game       ");
 	    // puts("\n\t\t Enter 2 to view high score  ");
@@ -97,11 +112,10 @@ void exam() {
 		     i=1;
 		     start:
 		     srand ( time(NULL) );
-		     r=rand()%23+1;
+		     r = rand()%23+1;
 		     nq[i]=r;
 		     for (w=0;w<i;w++)
 		 if (nq[w]==r) goto start;
-
 		     switch(r)
 		  {
 		  	case 1:

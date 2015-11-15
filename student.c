@@ -126,7 +126,6 @@ int student()
                 break;
             case 5:
                 fclose(fp);  
-                //exit(0);
 		choise(); 
         }
 	printf("\n-----------------------------------------------\n");
